@@ -22,6 +22,7 @@ input: 'hsl(var(--input))',
 ring: 'hsl(var(--ring))',
 background: 'hsl(var(--background))',
 foreground: 'hsl(var(--foreground))',
+
 embuer: {
 seaspray: '#83A69C',    // Muted teal-green
 babyblue: '#CBDFD8',    // Very light blue-green
@@ -36,7 +37,14 @@ lg: 'var(--radius)',
 md: 'calc(var(--radius) - 2px)',
 sm: 'calc(var(--radius) - 4px)'
 },
-}
+'shimmer': { '100%': { transform: 'translateX(100%)' } },
+'float': { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+'rotate-slow': { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+'bounce-mild': { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-5px)' } },
+
+},
+
+
 },
 plugins: [require("tailwindcss-animate")],
 }

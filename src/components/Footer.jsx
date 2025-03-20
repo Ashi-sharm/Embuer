@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-embuer-seaspray text-white pt-16 pb-6">
+    <footer className="bottom-0 left-0 w-full bg-embuer-seaspray text-white pt-16 pb-6">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
             <ul className="space-y-2">
-              {["Home", "Products", "About Us", "Blog", "Contact"].map((link) => (
+              {["Home", "About Us", "Products", "Blog", "Contact"].map((link) => (
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase().replace(/\s+/g, '')}`}
