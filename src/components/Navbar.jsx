@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <header className="fixed w-full top-0 left-0 z-50 flex flex-col transition-all duration-300">
       {/* Top white header with logo */}
-      <div className={`w-full bg-white py-3 transition-all duration-300`}>
+      <div className={"w-full bg-white py-3 transition-all duration-300"}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex-1 flex items-center justify-start">
@@ -83,7 +83,7 @@ const Navbar = () => {
               {["Home", "About", "Products", "Blog", "Contact"].map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={`${item.toLowerCase()}`}
                   className="py-3 text-white hover:text-embuer-naples font-medium text-sm tracking-wide transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-embuer-naples after:transition-all hover:after:w-full"
                 >
                   {item}
