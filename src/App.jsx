@@ -5,7 +5,7 @@ import ContactSection from "./components/ContactSection";
 import ProductsSection from "./components/ProductSection";
 import AboutSection from "./components/AboutSection";
 import BlogSection from "./components/BlogSection";
-// import VideoSection from "./components/VideoSection";
+import VideoSection from "./components/VideoSection";
 
 function App() {
   return (
@@ -20,9 +20,9 @@ function App() {
       <div id="about">
         <AboutSection />
       </div>
-      {/* <div id="videos">
+      <div>
         <VideoSection />
-      </div> */}
+      </div>
       <div id="blog">
         <BlogSection />
       </div>

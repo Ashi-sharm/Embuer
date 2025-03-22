@@ -7,7 +7,6 @@ const HeroSection = () => {
     <section className="relative min-h-screen  w-full overflow-hidden flex items-center">
       {/* Main content container */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-white">
-        {/* Decorative floating circles with different colors and animation delays */}
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-embuer-babyblue opacity-80 animate-float"></div>
         <div className="absolute top-1/4 -left-40 w-80 h-80 rounded-full bg-embuer-matcha opacity-40 animate-float" style={{ animationDelay: "1s" }}></div>
         <div className="absolute bottom-20 right-20 w-72 h-72 rounded-full bg-embuer-linen opacity-40 animate-float" style={{ animationDelay: "2s" }}></div>
@@ -144,7 +143,7 @@ const HeroSection = () => {
   
             <div className="relative w-full max-w-md overflow-hidden">
               <img
-                src="/public/heroi.png"
+                src="/public/hero.v.png"
                 alt="Natural skincare products"
                 className="object-contain w-full max-w-md h-auto z-20 relative"
               />
@@ -152,7 +151,7 @@ const HeroSection = () => {
             <motion.div
                   className="absolute top-1/4 -left-8 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
                   initial={{ opacity: 0, x: 40, y: 30 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  animate={{ opacity: 1, x: 70, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.7 }}
                 >
                   <div className="flex items-center space-x-3">
@@ -169,7 +168,7 @@ const HeroSection = () => {
                 <motion.div
                   className="absolute bottom-1/3 -right-8 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
                   initial={{ opacity: 0, x: -60, y: 30 }}
-                  animate={{ opacity: 1, x: -50, y: 0 }}
+                  animate={{ opacity: 1, x: -50, y: 70 }}
                   transition={{ delay: 1.1, duration: 0.7 }}
                 >
                   <div className="flex items-center space-x-3">
@@ -185,7 +184,7 @@ const HeroSection = () => {
                 <motion.div
                   className="absolute top-2/3 -left-12 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
                   initial={{ opacity: 0, x: 40, y: -30 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  animate={{ opacity: 1, x: 60, y: 0 }}
                   transition={{ delay: 1.4, duration: 0.7 }}
                 >
                   <div className="flex items-center space-x-3">
