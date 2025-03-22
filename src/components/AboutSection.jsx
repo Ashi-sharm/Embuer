@@ -94,47 +94,6 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="mt-8 md:mt-8 reveal reveal-delay-3">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-semibold  mb-4 font-playfair">
-              Our Commitment to Nature
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Watch our video to learn more about our eco-friendly and  sustainability practices.
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="relative rounded-2xl overflow-hidden aspect-video max-w-3xl mx-auto shadow-lg"
-          >
-            <iframe
-               className="w-full h-full"
-              src="https://www.youtube.com/embed/iQX56bhxdM8"
-              title="YouTube Video"
-              //   frameBorder="0"
-              //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              //   allowFullScreen
-            ></iframe>
-
-            {/* <img 
-              src="https://images.unsplash.com/photo-1518495973542-4542c06a5843" 
-              alt="Video Thumbnail" 
-              className="w-full h-full object-cover"
-            /> */}
-            <div className="absolute inset-0 bg-embuer-seaspray/20 flex items-center justify-center">
-              <button
-                className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center text-embuer-seaspray hover:bg-white transition-colors"
-                aria-label="Play video"
-              >
-                <Play className="w-6 h-6 ml-1" fill="currentColor" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

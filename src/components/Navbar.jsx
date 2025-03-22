@@ -5,16 +5,32 @@ import { Menu, X, ShoppingCart, Search } from "lucide-react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80, // Adjust based on navbar height
+        behavior: "smooth",
+      });
+    }
+  };
+
+
   return (
     <header className="fixed w-full top-0 left-0 z-50 flex flex-col transition-all duration-300">
       {/* Top white header with logo */}
       <div className={"w-full bg-white py-3 transition-all duration-300"}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex-1 flex items-center justify-start">
-            <span className="font-playfair text-embuer-rhino text-2xl font-bold">
-              embuer
-            </span>
+          <a
+            href="#"
+            onClick={() => scrollToSection("home")}
+            className="text-2xl font-bold"
+          >
+            embuer
           </a>
 
           {/* Search in the middle for desktop */}
@@ -60,37 +76,44 @@ const Navbar = () => {
               </a>
             </div>
             <button
-              className="md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="w-6 h-6 text-embuer-rhino" />
-              ) : (
-                <Menu className="w-6 h-6 text-embuer-rhino" />
-              )}
-            </button>
+          onClick={toggleMenu}
+          className="md:hidden p-2 rounded-md text-seaspray hover:bg-linen/50 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
           </div>
         </div>
       </div>
+
+
 
       {/* Bottom dark navigation bar */}
       <div className="w-full bg-gray-800 text-white">
         <div className="container mx-auto px-4">
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex justify-between">
-            <div className="flex space-x-8">
-              {["Home", "About", "Products", "Blog", "Contact"].map((item) => (
-                <a
-                  key={item}
-                  href={`${item.toLowerCase()}`}
-                  className="py-3 text-white hover:text-embuer-naples font-medium text-sm tracking-wide transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-embuer-naples after:transition-all hover:after:w-full"
+      <nav className="bg-gray-800 text-white">
+        <div className="container mx-auto px-4">
+          <ul className="hidden md:flex space-x-8">
+            {[
+              { name: "Home", id: "home" },
+              { name: "About", id: "about" },
+              { name: "Products", id: "products" },
+              { name: "Blog", id: "blog" },
+              { name: "Contact", id: "contact" },
+            ].map(({ name, id }) => (
+              <li key={id}>
+                <button
+                  onClick={() => scrollToSection(id)}
+                  className="py-3 text-white hover:text-embuer-naples font-medium text-sm tracking-wide transition-colors"
                 >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </nav>
+                  {name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        </nav>
         </div>
       </div>
     </header>

@@ -8,9 +8,73 @@
   :root {
     --background: 47 33% 98%;
     --foreground: 162 14% 59%;
+
+    --card: 47 33% 98%;
+    --card-foreground: 162 14% 59%;
+
+    --popover: 47 33% 98%;
+    --popover-foreground: 162 14% 59%;
+
+    --primary: 162 14% 59%;
+    --primary-foreground: 47 33% 98%;
+
+    --secondary: 149 26% 71%;
+    --secondary-foreground: 162 14% 59%;
+
+    --muted: 60 32% 79%;
+    --muted-foreground: 162 14% 59%;
+
+    --accent: 48 100% 88%;
+    --accent-foreground: 162 14% 59%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 47 33% 98%;
+
+    --border: 149 26% 71%;
+    --input: 149 26% 71%;
+    --ring: 162 14% 59%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
- 
+  .dark {
+    --background: 162 14% 59%;
+    --foreground: 47 33% 98%;
+
+    --card: 162 14% 59%;
+    --card-foreground: 47 33% 98%;
+
+    --popover: 162 14% 59%;
+    --popover-foreground: 47 33% 98%;
+
+    --primary: 162 14% 59%;
+    --primary-foreground: 162 14% 59%;
+
+    --secondary: 149 26% 71%;
+    --secondary-foreground: 162 14% 59%;
+
+    --muted: 60 32% 79%;
+    --muted-foreground: 162 14% 59%;
+
+    --accent: 48 100% 88%;
+    --accent-foreground: 162 14% 59%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 47 33% 98%;
+
+    --border: 149 26% 71%;
+    --input: 149 26% 71%;
+    --ring: 47 33% 98%;
+  }
 }
 
 @layer base {
@@ -35,25 +99,121 @@
   .hero-image-container::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-embuer-bumblebee/30 to-embuer-seaspray/30 z-10;
-    
   }
   
   .hero-image {
-    @apply w-full h-full object-cover transition-transform duration-700;  
-    
+    @apply w-full h-full object-cover transition-transform duration-700;
   }
   
   .hero-image-container:hover .hero-image {
     @apply scale-105;
   }
   
-}
-.section-title {
-  @apply text-3xl md:text-4xl font-bold text-embuer-seaspray mb-2 font-playfair;
-}
+  .embuer-card {
+    @apply relative overflow-hidden rounded-lg bg-white shadow-sm border border-embuer-matcha/50;
+  }
+  
+  .embuer-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-embuer-sunshine/30 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .embuer-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  .glass-effect {
+    @apply bg-white/60 backdrop-blur-md border border-white/20 shadow-md;
+  }
+  
+  .product-card {
+    @apply relative overflow-hidden rounded-xl bg-white p-4 shadow-md transition-all duration-300 hover:shadow-lg border border-embuer-matcha/30;
+  }
+  
+  .product-image-container {
+    @apply relative overflow-hidden rounded-lg mb-3;
+  }
+  
+  .product-image {
+    @apply w-full aspect-square object-cover transition-transform duration-500;
+  }
+  
+  .product-card:hover .product-image {
+    @apply scale-105;
+  }
+  
+  .filter-button {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border;
+  }
+  
+  .filter-button.active {
+    @apply bg-embuer-seaspray text-white border-embuer-seaspray;
+  }
+  
+  .filter-button:not(.active) {
+    @apply bg-white text-embuer-seaspray border-embuer-seaspray/30 hover:bg-embuer-seaspray/10;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-embuer-seaspray mb-2 font-playfair;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-embuer-seaspray/80 mb-8 max-w-2xl mx-auto;
+  }
 
-.section-subtitle {
-  @apply text-lg text-embuer-seaspray/80 mb-8 max-w-2xl mx-auto;
+  .shimmer {
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: shimmer 2s infinite;
+  }
+  
+  .float-element {
+    @apply absolute rounded-full opacity-0;
+    animation: float 6s ease-in-out infinite, fade-in 0.5s ease-out forwards;
+  }
+  
+  .float-element-1 {
+    @apply bg-embuer-bumblebee/20 w-16 h-16 top-10 -left-8;
+    animation-delay: 0s, 0.2s;
+  }
+  
+  .float-element-2 {
+    @apply bg-embuer-seaspray/15 w-24 h-24 bottom-20 -right-12;
+    animation-delay: 1s, 0.4s;
+  }
+  
+  .float-element-3 {
+    @apply bg-embuer-matcha/10 w-20 h-20 top-1/2 -right-10;
+    animation-delay: 2s, 0.6s;
+  }
+  
+
+
+  .gradient-button {
+    @apply relative overflow-hidden rounded-full px-6 py-3 font-medium text-white shadow-md transition-all duration-300;
+    background: linear-gradient(135deg, #83A69C, #DBDDB6);
+  }
+  
+  .gradient-button::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, #DBDDB6, #83A69C);
+  }
+  
+  .gradient-button:hover::before {
+    @apply opacity-100;
+  }
+  
+  .gradient-button span {
+    @apply relative z-10;
+  }
+
+  .gradient-text {
+    @apply font-bold;
+    background: linear-gradient(to right, #83A69C, #E3B055);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .font-montserrat {
@@ -62,6 +222,58 @@
 
 .font-playfair {
   font-family: 'Playfair Display', serif;
+}
+
+.reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes stagger-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes shimmer {
@@ -98,30 +310,73 @@
 .img-zoom:hover {
   transform: scale(1.1);
 }
-.filter-button {
-  @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border;
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
-.filter-button.active {
-  @apply bg-embuer-seaspray text-white border-embuer-seaspray;
+.animate-marquee {
+  display: flex;
+  animation: marquee 10s linear infinite;
 }
 
-.filter-button:not(.active) {
-  @apply bg-white text-embuer-seaspray border-embuer-seaspray/30 hover:bg-embuer-seaspray/10;
+
+
+
+.video-section {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.product-card {
-  @apply relative overflow-hidden rounded-xl bg-white p-4 shadow-md transition-all duration-300 hover:shadow-lg border border-embuer-matcha/30;
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.product-image-container {
-  @apply relative overflow-hidden rounded-lg mb-3;
+.animated-slide-in {
+  animation: slideInLeft 1.25s ease-out 0.3s both; /* 0.8s duration, ease-out, 0.3s delay */
 }
 
-.product-image {
-  @apply w-full aspect-square object-cover transition-transform duration-500;
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px); /* Starts from right */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.product-card:hover .product-image {
-  @apply scale-105;
+.animated-slide-in-right {
+  animation: slideInRight 1.25s ease-out 0.3s both;
+}
+
+@keyframes slideInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px); /* Starts from top */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-slide-in-bottom {
+  animation: slideInTop 1.25s ease-out 0.3s both;
 }
