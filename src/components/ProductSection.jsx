@@ -184,10 +184,10 @@ const ProductsSection = () => {
   };
 
   return (
-    <section id="products" className="py-20 md:py-32 bg-gradient-to-b from-white to-embuer-barley/20">
+    <section id="products" className="py-10 md:py-10 bg-gradient-to-b from-white to-embuer-barley/20">
       <div ref={containerRef} className="container mx-auto px-4 md:px-6">
         <motion.div 
-          className="text-center mb-12"
+          className="text-center mb-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -200,7 +200,7 @@ const ProductsSection = () => {
         </motion.div>
 
         <motion.div 
-          className="flex flex-wrap justify-center mb-10 gap-2 md:gap-4"
+          className="flex flex-wrap justify-center -top-20 mb-4 gap-2 md:gap-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -293,7 +293,7 @@ const ProductsSection = () => {
                   {product.name}
                 </h3>
                 <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                <div className="flex justify-between items-center mt-4">
+                {/* <div className="flex justify-between items-center mt-4">
                   <span className="font-bold text-embuer-naples">{product.price}</span>
                   <motion.button 
                     className="p-2 rounded-full bg-embuer-neptune/10 text-embuer-neptune hover:bg-embuer-neptune hover:text-white transition-colors"
@@ -302,7 +302,7 @@ const ProductsSection = () => {
                   >
                     <ShoppingCart className="w-4 h-4" />
                   </motion.button>
-                </div>
+                </div> */}
                 
                 {/* Add floating animation elements */}
                 <motion.div 
@@ -349,7 +349,7 @@ const ProductsSection = () => {
             whileHover="hover"
             whileTap="tap"
             href="#"
-            className="inline-flex items-center px-6 py-3 rounded-full border border-embuer-neptune text-embuer-neptune font-medium hover:bg-embuer-neptune hover:text-white transition-colors"
+            className="inline-flex items-center px-6 py-3 rounded-full border bg-embuer-seaspray border-embuer-neptune text-white font-medium"
           >
             View All Products
             <motion.span

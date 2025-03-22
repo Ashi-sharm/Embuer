@@ -3,7 +3,14 @@ import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="pt-24 pb-16 md:py-32 overflow-hidden">
+    //media query removed, check once
+    <section id="home" className="pt-40 pb-20 overflow-hidden"> 
+     <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Decorative floating circles with different colors and animation delays */}
+        {/* <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-babyblue opacity-40 animate-float"></div>
+        <div className="absolute top-1/4 -left-40 w-80 h-80 rounded-full bg-matcha opacity-30 animate-float" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute bottom-20 right-20 w-72 h-72 rounded-full bg-sunshine opacity-20 animate-float" style={{ animationDelay: "2s" }}></div> */}
+      </div>
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="order-2 md:order-1">
@@ -46,6 +53,7 @@ const HeroSection = () => {
                 Shop Now
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </motion.a>
+
             </div>
           </div>
           
