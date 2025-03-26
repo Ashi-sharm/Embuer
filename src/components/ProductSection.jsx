@@ -1,5 +1,10 @@
-import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ShoppingCart, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ShoppingCart,
+  ArrowRight,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 // Sample product data
@@ -9,56 +14,74 @@ const products = [
     name: "Baby Wet Wipes",
     category: "Baby Care",
     description: "Gentle and safe for baby's sensitive skin",
-    image: "/public/products1.png"},
+    price: "Rs 3.99",
+    image: "/public/products1.png",
+  },
   {
     id: 2,
     name: "Facial Cleansing Wipes",
     category: "Personal Care",
     description: "Removes makeup and refreshes skin",
-    image: "/public/product2.png"},
-    // image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07"
+    price: "Rs 3.99",
+    image: "/public/product2.png",
+  },
+  
 
   {
     id: 3,
     name: "Antibacterial Hand Wipes",
     category: "Personal Care",
     description: "Kills 99.9% of bacteria",
-    // price: "$3.99",
-    // image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
-    image: "/public/products3.png"},
+    price: "Rs 3.99",
+    image: "/public/products3.png",
+  },
 
   {
     id: 4,
     name: "Kitchen Cleaning Wipes",
     category: "Home Care",
     description: "Effective against grease and grime",
-    // price: "$6.99",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05"
+    price: "Rs 3.99",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
   },
   {
     id: 5,
     name: "Sensitive Baby Wipes",
     category: "Baby Care",
     description: "Extra gentle for newborns",
-    // price: "$5.49",
-    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843"
+    price: "Rs 3.99",
+    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843",
   },
   {
     id: 6,
     name: "Bathroom Cleaning Wipes",
     category: "Home Care",
     description: "Eliminates soap scum and water spots",
-    // price: "$6.49",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05"
-  }
+    price: "Rs 3.99",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+  },
+  {
+    id: 7,
+    name: "Bathroom Cleaning Wipes",
+    category: "Baby Care",
+    description: "Eliminates soap scum and water spots",
+    price: "Rs 3.99",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+  },
+  {
+    id: 8,
+    name: "Bathroom Cleaning Wipes",
+    category: "Personal Care",
+    description: "Eliminates soap scum and water spots",
+    price: "Rs 3.99",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+  },
 ];
 
 const ProductsSection = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [visibleRange, setVisibleRange] = useState({ start: 0, end: 3 });
-  const [isAnimating, setIsAnimating] = useState(false);
-  const containerRef = useRef(null);
 
   const filters = ["All", "Baby Care", "Personal Care", "Home Care"];
 
@@ -66,63 +89,40 @@ const ProductsSection = () => {
     if (activeFilter === "All") {
       setFilteredProducts(products);
     } else {
-      setFilteredProducts(products.filter(product => product.category === activeFilter));
+      setFilteredProducts(
+        products.filter((product) => product.category === activeFilter)
+      );
     }
-    // Reset to first set of products when filter changes
     setVisibleRange({ start: 0, end: Math.min(3, products.length) });
   }, [activeFilter]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
 
-    const elements = containerRef.current?.querySelectorAll(".reveal");
-    elements?.forEach((el) => observer.observe(el));
 
-    return () => {
-      elements?.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
 
   const handleNext = () => {
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
-    const newStart = Math.min(visibleRange.start + 1, filteredProducts.length - 3);
+    const newStart = Math.min(
+      visibleRange.start + 1,
+      filteredProducts.length - 3
+    );
     setVisibleRange({
       start: newStart,
-      end: Math.min(newStart + 3, filteredProducts.length)
+      end: Math.min(newStart + 3, filteredProducts.length),
     });
-    
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 500); // Match duration with animation
   };
 
   const handlePrev = () => {
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
+  
     const newStart = Math.max(visibleRange.start - 1, 0);
     setVisibleRange({
       start: newStart,
-      end: Math.min(newStart + 3, filteredProducts.length)
+      end: Math.min(newStart + 3, filteredProducts.length),
     });
-    
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 500); // Match duration with animation
   };
 
-  const visibleProducts = filteredProducts.slice(visibleRange.start, visibleRange.end);
+  const visibleProducts = filteredProducts.slice(
+    visibleRange.start,
+    visibleRange.end
+  );
   const canGoNext = visibleRange.end < filteredProducts.length;
   const canGoPrev = visibleRange.start > 0;
 
@@ -132,9 +132,9 @@ const ProductsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const productVariants = {
@@ -146,9 +146,9 @@ const ProductsSection = () => {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   const filterVariants = {
@@ -159,16 +159,15 @@ const ProductsSection = () => {
       transition: {
         delay: i * 0.1,
         duration: 0.4,
-        ease: "easeOut"
-      }
-    })
+        ease: "easeOut",
+      },
+    }),
   };
-  
 
   const buttonVariants = {
     initial: { scale: 1 },
     hover: { scale: 1.05, transition: { duration: 0.2 } },
-    tap: { scale: 0.95, transition: { duration: 0.2 } }
+    tap: { scale: 0.95, transition: { duration: 0.2 } },
   };
 
   const sectionHeadingVariants = {
@@ -178,15 +177,18 @@ const ProductsSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
-    <section id="products" className="py-10 md:py-10 bg-gradient-to-b from-white to-embuer-barley/20">
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6">
-        <motion.div 
+    <section
+      id="products"
+      className="py-10 md:py-10 bg-gradient-to-b from-white to-embuer-barley/20"
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
           className="text-center mb-4"
           initial="hidden"
           whileInView="visible"
@@ -195,11 +197,12 @@ const ProductsSection = () => {
         >
           <h2 className="section-title text-embuer-rhino">Our Products</h2>
           <p className="section-subtitle text-embuer-rhino/80">
-            Discover our range of natural, eco-friendly products for you and your family
+            Discover our range of natural, eco-friendly products for you and
+            your family
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center -top-20 mb-4 gap-2 md:gap-4"
           initial="hidden"
           whileInView="visible"
@@ -215,8 +218,8 @@ const ProductsSection = () => {
               whileTap={{ y: 0 }}
               onClick={() => setActiveFilter(filter)}
               className={`filter-button px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
-                activeFilter === filter 
-                  ? "bg-embuer-neptune text-white border-embuer-neptune" 
+                activeFilter === filter
+                  ? "bg-embuer-neptune text-white border-embuer-neptune"
                   : "bg-white text-embuer-neptune border-embuer-neptune/30 hover:bg-embuer-neptune/10"
               }`}
             >
@@ -233,32 +236,36 @@ const ProductsSection = () => {
               whileHover="hover"
               whileTap="tap"
               onClick={handlePrev}
-              disabled={!canGoPrev || isAnimating}
-              className={`p-2 rounded-full ${
-                canGoPrev && !isAnimating ? "bg-embuer-neptune text-white" : "bg-gray-200 text-gray-400"
-              } transition-colors`}
+              disabled={!canGoPrev}
+              className={`p-2 rounded-full transition-colors ${
+                canGoPrev
+                  ? "bg-embuer-babyblue text-white"
+                  : "bg-gray-200 text-gray-400"
+              }`}
               aria-label="Previous products"
             >
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
-            
+
             <motion.button
               variants={buttonVariants}
               initial="initial"
               whileHover="hover"
               whileTap="tap"
               onClick={handleNext}
-              disabled={!canGoNext || isAnimating}
+              disabled={!canGoNext}
               className={`p-2 rounded-full ${
-                canGoNext && !isAnimating ? "bg-embuer-neptune text-white" : "bg-gray-200 text-gray-400"
+                canGoNext
+                  ? "bg-embuer-babyblue text-white"
+                  : "bg-gray-200 text-gray-400"
               } transition-colors`}
               aria-label="Next products"
             >
               <ChevronRight className="w-5 h-5" />
             </motion.button>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
@@ -278,7 +285,7 @@ const ProductsSection = () => {
                     alt={product.name}
                     className="product-image w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <motion.div 
+                  <motion.div
                     className="absolute top-2 right-2"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -292,51 +299,31 @@ const ProductsSection = () => {
                 <h3 className="font-semibold text-lg mb-1 text-embuer-rhino group-hover:text-embuer-neptune transition-colors">
                   {product.name}
                 </h3>
-                <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                {/* <div className="flex justify-between items-center mt-4">
-                  <span className="font-bold text-embuer-naples">{product.price}</span>
-                  <motion.button 
+                <p className="text-gray-600 text-sm mb-2">
+                  {product.description}
+                </p>
+                <div className="flex justify-between items-center mt-4">
+                  <span className="font-bold text-embuer-naples">
+                    {product.price}
+                  </span>
+                  <motion.button
                     className="p-2 rounded-full bg-embuer-neptune/10 text-embuer-neptune hover:bg-embuer-neptune hover:text-white transition-colors"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    <ShoppingCart className="w-4 h-4" />
+                    <ShoppingCart
+                      className="w-4 h-4"
+                      onClick={() => addCart(product)}
+                    />
                   </motion.button>
-                </div> */}
-                
-                {/* Add floating animation elements */}
-                <motion.div 
-                  className="absolute -z-10 w-12 h-12 rounded-full bg-embuer-naples/10 top-0 left-0 -translate-x-1/2 -translate-y-1/2"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                />
-                
-                <motion.div 
-                  className="absolute -z-10 w-8 h-8 rounded-full bg-embuer-olive/10 bottom-0 right-0 translate-x-1/3 translate-y-1/3"
-                  animate={{ 
-                    scale: [1, 1.3, 1],
-                    opacity: [0.3, 0.7, 0.3]
-                  }}
-                  transition={{
-                    duration: 4,
-                    delay: 1,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                />
+                </div>
+
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -348,17 +335,18 @@ const ProductsSection = () => {
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            href="#"
+            href="https://www.google.com"
+            target="_blank"
             className="inline-flex items-center px-6 py-3 rounded-full border bg-embuer-seaspray border-embuer-neptune text-white font-medium"
           >
             View All Products
             <motion.span
               animate={{ x: [0, 5, 0] }}
-              transition={{ 
-                duration: 1.5, 
+              transition={{
+                duration: 1.5,
                 repeat: Infinity,
                 repeatType: "loop",
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <ArrowRight className="ml-2 w-4 h-4" />

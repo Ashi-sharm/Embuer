@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+// import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Clock, ArrowRight } from "lucide-react";
 
@@ -33,28 +33,9 @@ const blogs = [
   }
 ];
 
+
+
 const BlogSection = () => {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = containerRef.current?.querySelectorAll(".reveal");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements?.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
 
   const blogVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -71,25 +52,25 @@ const BlogSection = () => {
 
   return (
     <section id="blog" className="py-16 md:py-24 bg-embuer-linen">
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 reveal">
+      <div  className="container mx-auto px-4 md:px-6">
+        <div className="text-center mb-12 ">
           <h2 className="section-title">News From Embuer Blog</h2>
           <p className="section-subtitle">
           Read out the articles about healthy lifestyle
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal reveal-delay-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
           {blogs.map((blog, index) => (
-            <motion.article
-              key={blog.id}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={blogVariants}
-              className="bg-white rounded-xl overflow-hidden shadow-sm border border-embuer-babyblue/20 hover:shadow-md transition-shadow"
-            >
+               <motion.article
+                key={blog.id}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={blogVariants}
+                className="bg-white rounded-xl overflow-hidden shadow-sm border border-embuer-babyblue/20 hover:shadow-md transition-shadow"
+              >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={blog.image} 
@@ -122,20 +103,22 @@ const BlogSection = () => {
                 </p>
                 
                 <a 
-                  href="#" 
+                  href="https://www.google.com" 
+                  target="_blank"
                   className="inline-flex items-center text-embuer-seaspray font-medium text-sm hover:text-embuer-bumblebee transition-colors"
                 >
                   Read More
                   <ArrowRight className="ml-1 w-4 h-4" />
                 </a>
               </div>
-            </motion.article>
+              </motion.article>
           ))}
         </div>
 
-        <div className="text-center mt-12 reveal reveal-delay-2">
+        <div className="text-center mt-12">
           <a
-            href="#"
+            href="https://www.google.com" 
+            target="_blank"
             className="inline-flex items-center px-6 py-3 rounded-full border border-embuer-seaspray text-embuer-seaspray font-medium hover:bg-embuer-seaspray hover:text-white transition-colors"
           >
             View All Articles

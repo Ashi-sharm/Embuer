@@ -1,4 +1,6 @@
 import { ChevronRight } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,17 +14,31 @@ const Footer = () => {
             <p className="text-embuer-linen mb-4 text-sm">
               Providing pure and natural personal care products for you and your family. Made with love and care for the environment.
             </p>
-            <div className="flex space-x-4">
-              {["facebook", "instagram", "twitter", "linkedin"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                >
-                  <span className="sr-only">{social}</span>
-                  <i className={`lucide lucide-${social}`}></i>
-                </a>
-              ))}
+            <div className="md:flex space-x-2">
+              <a
+                href="https://www.facebook.com"
+                 target="_blank"
+                className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-embuer-neptune hover:text-white transition-colors"
+                aria-label="Visit our Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://x.com"
+                 target="_blank"
+                className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-embuer-neptune hover:text-white transition-colors"
+                aria-label="Visit our Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                 target="_blank"
+                className="h-6 w-6 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-embuer-neptune hover:text-white transition-colors"
+                aria-label="Visit our Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -49,7 +65,7 @@ const Footer = () => {
               {["Baby Care", "Personal Care", "Home Care", "Gift Sets", "Eco-Friendly"].map((category) => (
                 <li key={category}>
                   <a 
-                    href="#"
+                    href="#products"
                     className="text-embuer-linen hover:text-white transition-colors inline-flex items-center"
                   >
                     <ChevronRight className="w-3 h-3 mr-1" />
@@ -76,10 +92,10 @@ const Footer = () => {
               &copy; {currentYear} Embuer. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-embuer-linen">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Shipping Policy</a>
-              <a href="#" className="hover:text-white transition-colors">FAQs</a>
+              <a href="https://www.google.com/" target="_blank" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="https://www.google.com/" target="_blank" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="https://www.google.com/" target="_blank" className="hover:text-white transition-colors">Shipping Policy</a>
+              <a href="https://www.google.com/" target="_blank" className="hover:text-white transition-colors">FAQs</a>
             </div>
           </div>
         </div>

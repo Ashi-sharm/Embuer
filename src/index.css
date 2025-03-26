@@ -311,13 +311,41 @@ html {
   transform: scale(1.1);
 }
 @keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-marquee {
-  display: flex;
-  animation: marquee 10s linear infinite;
+  animation: marquee 15s linear infinite;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .animate-marquee {
+    animation-duration: 20s;
+  }
+}
+
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation-duration: 25s;
+  }
+}
+
+@media (max-width: 480px) {
+  .animate-marquee {
+    animation-duration: 30s;
+    font-size: 14px;
+  }
+}
+
+.marquee-item {
+  margin-right: 2.5rem; /* 10px spacing */
+  white-space: nowrap;
 }
 
 

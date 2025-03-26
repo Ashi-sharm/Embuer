@@ -1,46 +1,21 @@
-import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { MapPin, Mail, Phone, Send, Facebook, Twitter, Youtube } from "lucide-react";
+import { MapPin, Mail, Phone, Send } from "lucide-react";
 
 const ContactSection = () => {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = containerRef.current?.querySelectorAll(".reveal");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements?.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Form submission logic would go here
+    e.preventDefault(); // prevents for reloading
   };
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-white">
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 reveal reveal-delay-5">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center mb-12 ">
           <h2 className="section-title">Get In Touch</h2>
           <p className="section-subtitle">
             Have questions or feedback? We'd love to hear from you
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 ">
           <div className="animated-slide-in">
             <div className="bg-embuer-linen rounded-xl p-6 md:p-8">
               <h3 className="text-xl font-semibold text-embuer-seaspray mb-6 font-playfair">
@@ -83,50 +58,17 @@ const ContactSection = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8">
-                <h4 className="font-medium text-embuer-seaspray mb-4">
-                  Follow our social media
-                </h4>
-                <div className="flex space-x-4">
-                  {["facebook", "instagram", "twitter", "linkedin"].map(
-                    (social) => (
-                      <a
-                        key={social}
-                        href="#"
-                        className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-embuer-seaspray hover:bg-embuer-seaspray hover:text-white transition-colors"
-                      >
-                        <span className="sr-only">{social}</span>
-                        <i className={`lucide lucide-${social}`}></i>
-                      </a>
-                    )
-                  )}
-                </div>
-              </div>
             </div>
 
-            <div className="mt-8 rounded-xl overflow-hidden h-[300px] shadow-sm border border-embuer-babyblue/20 reveal reveal-delay-3">
+            <div className="mt-8 rounded-xl overflow-hidden h-[300px] shadow-sm border-0 border-embuer-babyblue/20">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d10469155.677517224!2d66.7306922842991!3d23.322918859147155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d18.5764157!2d73.994756!4m5!1s0x390cfd67d88241a5%3A0x66dabc3409c4d59d!2sAmbition%20Achiever%2C%202-E%2C%20Caxton%20House%2C%20Rani%20Jhansi%20Rd%2C%20Block%20E%204%2C%20Jhandewalan%20Extension%2C%20Jhandewalan%2C%20New%20Delhi%2C%20Delhi%20110055!3m2!1d28.6471591!2d77.20601789999999!5e0!3m2!1sen!2sin!4v1742501278059!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
-                style={{ border: "0" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-              {/* Map placeholder - would be replaced with actual map */}
-              <div className="w-full h-full bg-embuer-babyblue/30 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-10 h-10 text-embuer-seaspray mx-auto mb-2" />
-                  <p className="text-embuer-seaspray font-medium">
-                    Map Location
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Interactive map would be displayed here
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
 
