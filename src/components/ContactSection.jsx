@@ -163,11 +163,11 @@ const ContactSection = () => {
                 products and offers.
               </p>
 
-              <form className="flex space-x-2">
+              <form className="flex  flex-wrap">
                 <input
                   type="email"
                   className="flex-1 px-4 py-3 rounded-lg border border-embuer-babyblue/50 focus:outline-none focus:ring-2 focus:ring-embuer-seaspray/50"
-                  placeholder="Your email address"
+                  placeholder="Your email id"
                   required
                 />
                 <button
