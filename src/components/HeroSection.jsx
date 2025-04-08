@@ -61,15 +61,6 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
 
-              {/* <a 
-                href="#video" 
-                className="px-8 py-4 bg-transparent border border-seaspray/20 text-seaspray rounded-full font-medium flex items-center justify-center sm:justify-start hover:border-seaspray transition-all"
-              >
-                <div className="mr-3 w-8 h-8 rounded-full bg-seaspray/10 flex items-center justify-center">
-                  <div className="w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-seaspray ml-1"></div>
-                </div>
-                Watch Video
-              </a> */}
             </motion.div>
 
             {/* Social proof metrics */}
@@ -111,7 +102,8 @@ const HeroSection = () => {
               />
             </div>
             <motion.div
-              className="absolute top-1/4 -left-8 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
+              className="absolute top-1/4 -left-8 bg-white
+               p-4 rounded-lg shadow-xl z-30"
               initial={{ opacity: 0, x: 40, y: 30 }}
               animate={{ opacity: 1, x: 70, y: 0 }}
               transition={{ delay: 0.8, duration: 0.7 }}
@@ -128,7 +120,7 @@ const HeroSection = () => {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-1/3 -right-8 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
+              className="absolute bottom-1/3 -right-8 bg-white p-4 rounded-lg shadow-xl z-30"
               initial={{ opacity: 0, x: -60, y: 30 }}
               animate={{ opacity: 1, x: -50, y: 70 }}
               transition={{ delay: 1.1, duration: 0.7 }}
@@ -144,7 +136,7 @@ const HeroSection = () => {
               </div>
             </motion.div>
             <motion.div
-              className="absolute top-2/3 -left-12 bg-embuer-linen p-4 rounded-lg shadow-xl z-30"
+              className="absolute top-2/3 -left-12 bg-white p-4 rounded-lg shadow-xl z-30"
               initial={{ opacity: 0, x: 40, y: -30 }}
               animate={{ opacity: 1, x: 60, y: 0 }}
               transition={{ delay: 1.4, duration: 0.7 }}

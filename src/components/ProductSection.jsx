@@ -3,11 +3,8 @@ import {
   ChevronLeft,
   ChevronRight,
   ShoppingCart,
-  ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
-
-// Sample product data
 const products = [
   {
     id: 1,
@@ -20,13 +17,11 @@ const products = [
   {
     id: 2,
     name: "Facial Cleansing Wipes",
-    category: "Personal Care",
+    category: "Baby Care",
     description: "Removes makeup and refreshes skin",
     price: "Rs 3.99",
     image: "/public/product2.png",
   },
-  
-
   {
     id: 3,
     name: "Antibacterial Hand Wipes",
@@ -35,14 +30,13 @@ const products = [
     price: "Rs 3.99",
     image: "/public/products3.png",
   },
-
   {
     id: 4,
     name: "Kitchen Cleaning Wipes",
     category: "Home Care",
     description: "Effective against grease and grime",
     price: "Rs 3.99",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    image: "/public/products3.png",
   },
   {
     id: 5,
@@ -50,7 +44,7 @@ const products = [
     category: "Baby Care",
     description: "Extra gentle for newborns",
     price: "Rs 3.99",
-    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843",
+    image: "/public/products3.png",
   },
   {
     id: 6,
@@ -58,75 +52,72 @@ const products = [
     category: "Home Care",
     description: "Eliminates soap scum and water spots",
     price: "Rs 3.99",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    image: "/public/products1.png",
   },
   {
     id: 7,
-    name: "Bathroom Cleaning Wipes",
+    name: "Baby Cleaning Wipes",
     category: "Baby Care",
     description: "Eliminates soap scum and water spots",
     price: "Rs 3.99",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    image: "/public/products3.png",
   },
   {
     id: 8,
-    name: "Bathroom Cleaning Wipes",
+    name: "Facial Scrub Wipes",
     category: "Personal Care",
     description: "Eliminates soap scum and water spots",
     price: "Rs 3.99",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    image: "/public/product2.png",
   },
 ];
 
 const ProductsSection = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [visibleRange, setVisibleRange] = useState({ start: 0, end: 3 });
+  const [currentPage, setCurrentPage] = useState(0);
+  const productsPerPage = 3;
 
   const filters = ["All", "Baby Care", "Personal Care", "Home Care"];
-
   useEffect(() => {
+    let filtered = [];
+    
     if (activeFilter === "All") {
-      setFilteredProducts(products);
+      filtered = [...products];
     } else {
-      setFilteredProducts(
-        products.filter((product) => product.category === activeFilter)
-      );
+      filtered = products.filter((product) => product.category === activeFilter);
     }
-    setVisibleRange({ start: 0, end: Math.min(3, products.length) });
+    
+    setFilteredProducts(filtered);
+    setCurrentPage(0);
   }, [activeFilter]);
 
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
+//to find which product is visible 
+  const visibleProducts = filteredProducts.slice(
+    currentPage * productsPerPage,
+    (currentPage + 1) * productsPerPage
+  );
 
 
   const handleNext = () => {
-    const newStart = Math.min(
-      visibleRange.start + 1,
-      filteredProducts.length - 3
-    );
-    setVisibleRange({
-      start: newStart,
-      end: Math.min(newStart + 3, filteredProducts.length),
-    });
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handlePrev = () => {
-  
-    const newStart = Math.max(visibleRange.start - 1, 0);
-    setVisibleRange({
-      start: newStart,
-      end: Math.min(newStart + 3, filteredProducts.length),
-    });
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
   };
+  
+  // for maintaining the disability of the next and prev button
+  const canGoNext = currentPage < totalPages - 1;
+  const canGoPrev = currentPage > 0;
 
-  const visibleProducts = filteredProducts.slice(
-    visibleRange.start,
-    visibleRange.end
-  );
-  const canGoNext = visibleRange.end < filteredProducts.length;
-  const canGoPrev = visibleRange.start > 0;
 
-  // Enhanced animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -268,94 +259,68 @@ const ProductsSection = () => {
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
             variants={containerVariants}
+            key={currentPage}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            animate="visible"
+            viewport={{ once: false }}
           >
-            {visibleProducts.map((product, index) => (
-              <motion.div
-                key={`${product.id}-${visibleRange.start + index}`}
-                variants={productVariants}
-                className="product-card group"
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              >
-                <div className="product-image-container overflow-hidden rounded-lg mb-3">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-image w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <motion.div
-                    className="absolute top-2 right-2"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 + 0.2 }}
-                  >
-                    <span className="inline-block px-2 py-1 bg-embuer-neptune/90 text-white text-xs rounded-full">
-                      {product.category}
-                    </span>
-                  </motion.div>
-                </div>
-                <h3 className="font-semibold text-lg mb-1 text-embuer-rhino group-hover:text-embuer-neptune transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  {product.description}
-                </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="font-bold text-embuer-naples">
-                    {product.price}
-                  </span>
-                  <motion.button
-                    className="p-2 rounded-full bg-embuer-neptune/10 text-embuer-neptune hover:bg-embuer-neptune hover:text-white transition-colors"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <ShoppingCart
-                      className="w-4 h-4"
-                      onClick={() => addCart(product)}
-                    />
-                  </motion.button>
-                </div>
+            {visibleProducts.length > 0 ? (
+              visibleProducts.map((product, index) => (
+                <motion.div
+  key={`${product.id}-${index}`}
+  variants={productVariants}
+  className="product-card group"
+  whileHover={{ y: -10, transition: { duration: 0.3 } }}
+>
 
-              </motion.div>
-            ))}
+                  <div className="product-image-container relative overflow-hidden rounded-lg mb-3">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="product-image w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <motion.div
+                      className="absolute top-2 right-2"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 + 0.2 }}
+                    >
+                      <span className="inline-block px-2 py-1 bg-embuer-neptune/90 text-white text-xs rounded-full">
+                        {product.category}
+                      </span>
+                    </motion.div>
+                  </div>
+                  <h3 className="font-semibold text-lg mb-1 text-embuer-rhino group-hover:text-embuer-neptune transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-2">
+                    {product.description}
+                  </p>
+                  <div className="flex justify-between items-center mt-4">
+                    <span className="font-bold text-embuer-naples">
+                      {product.price}
+                    </span>
+                    <motion.button
+                      className="p-2 rounded-full bg-embuer-neptune/10 text-embuer-neptune hover:bg-embuer-neptune hover:text-white transition-colors"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+  </motion.button>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p>No products found for this category.</p>
+              </div>
+            )}
           </motion.div>
         </div>
 
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <motion.a
-            variants={buttonVariants}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            href="https://www.google.com"
-            target="_blank"
-            className="inline-flex items-center px-6 py-3 rounded-full border bg-embuer-seaspray border-embuer-neptune text-white font-medium"
-          >
-            View All Products
-            <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </motion.span>
-          </motion.a>
-        </motion.div>
+        
       </div>
     </section>
   );
 };
-
 export default ProductsSection;
